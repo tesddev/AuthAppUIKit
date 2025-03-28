@@ -1,5 +1,5 @@
-An app with an implementation of a login screen design
+An app with an implementation of a login screen design using UIKit
 
 Screenshot from the app:
 
-<img src="https://github.com/user-attachments/assets/5c803115-cf83-493e-93f6-2032dbdc76cf" alt="Login Screen" width="300" height="700">
+<img width="420" alt="Screenshot 2025-03-28 at 18 24 45" src="https://github.com/user-attachments/assets/afe97b1a-0fcd-439b-bdfd-c3e8271ba2bf" />
