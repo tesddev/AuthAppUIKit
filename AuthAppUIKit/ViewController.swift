@@ -20,8 +20,9 @@ class LoginViewController: UIViewController {
         
         private let emailContainerView: UIView = {
             let view = UIView()
-            view.backgroundColor = UIColor(red: 0.12, green: 0.12, blue: 0.2, alpha: 1.0)
-            view.layer.cornerRadius = 15
+            view.layer.cornerRadius = 12
+            view.layer.borderWidth = 0.3
+            view.layer.borderColor = UIColor.white.cgColor
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -29,7 +30,7 @@ class LoginViewController: UIViewController {
         private let emailIconView: UIImageView = {
             let imageView = UIImageView()
             imageView.image = UIImage(systemName: "envelope")
-            imageView.tintColor = .gray
+            imageView.tintColor = .white
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
@@ -51,8 +52,9 @@ class LoginViewController: UIViewController {
         
         private let passwordContainerView: UIView = {
             let view = UIView()
-            view.backgroundColor = UIColor(red: 0.12, green: 0.12, blue: 0.2, alpha: 1.0)
-            view.layer.cornerRadius = 15
+            view.layer.cornerRadius = 12
+            view.layer.borderWidth = 0.3
+            view.layer.borderColor = UIColor.white.cgColor
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -60,7 +62,7 @@ class LoginViewController: UIViewController {
         private let passwordIconView: UIImageView = {
             let imageView = UIImageView()
             imageView.image = UIImage(systemName: "lock")
-            imageView.tintColor = .gray
+            imageView.tintColor = .white
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
@@ -103,7 +105,7 @@ class LoginViewController: UIViewController {
             button.setTitleColor(.white, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
             button.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 1.0, alpha: 1.0)
-            button.layer.cornerRadius = 15
+            button.layer.cornerRadius = 12
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
@@ -112,7 +114,7 @@ class LoginViewController: UIViewController {
             let stackView = UIStackView()
             stackView.axis = .horizontal
             stackView.alignment = .center
-            stackView.distribution = .fill
+            stackView.distribution = .fillEqually
             stackView.spacing = 10
             stackView.translatesAutoresizingMaskIntoConstraints = false
             return stackView
@@ -120,7 +122,7 @@ class LoginViewController: UIViewController {
         
         private let leftDivider: UIView = {
             let view = UIView()
-            view.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+            view.backgroundColor = UIColor.blue
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -128,7 +130,7 @@ class LoginViewController: UIViewController {
         private let orLabel: UILabel = {
             let label = UILabel()
             label.text = "or"
-            label.textColor = .gray
+            label.textColor = .white
             label.textAlignment = .center
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
@@ -136,24 +138,22 @@ class LoginViewController: UIViewController {
         
         private let rightDivider: UIView = {
             let view = UIView()
-            view.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+            view.backgroundColor = UIColor.blue
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
         
         private let googleButton: UIButton = {
             let button = UIButton(type: .system)
-            button.backgroundColor = UIColor(red: 0.12, green: 0.12, blue: 0.2, alpha: 1.0)
             button.layer.cornerRadius = 15
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
+            button.layer.borderColor = UIColor.white.cgColor
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
         
         private let googleIconView: UIImageView = {
             let imageView = UIImageView(image: UIImage(named: "google"))
-//            imageView.backgroundColor = .clear
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
@@ -163,17 +163,16 @@ class LoginViewController: UIViewController {
             let label = UILabel()
             label.text = "Continue with Google"
             label.textColor = .white
-            label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
         
         private let appleButton: UIButton = {
             let button = UIButton(type: .system)
-            button.backgroundColor = UIColor(red: 0.12, green: 0.12, blue: 0.2, alpha: 1.0)
             button.layer.cornerRadius = 15
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
+            button.layer.borderColor = UIColor.white.cgColor
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
@@ -192,17 +191,9 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "Continue with Apple"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private let homeIndicator: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-        view.layer.cornerRadius = 2.5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     // MARK: - Properties
@@ -252,15 +243,12 @@ class LoginViewController: UIViewController {
         view.addSubview(appleButton)
         appleButton.addSubview(appleIconView)
         appleButton.addSubview(appleLabel)
-        
-        // Add home indicator
-        view.addSubview(homeIndicator)
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
             // Title label
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -302,7 +290,7 @@ class LoginViewController: UIViewController {
             passwordVisibilityButton.trailingAnchor.constraint(equalTo: passwordContainerView.trailingAnchor, constant: -15),
             passwordVisibilityButton.centerYAnchor.constraint(equalTo: passwordContainerView.centerYAnchor),
             passwordVisibilityButton.widthAnchor.constraint(equalToConstant: 25),
-            passwordVisibilityButton.heightAnchor.constraint(equalToConstant: 25),
+            passwordVisibilityButton.heightAnchor.constraint(equalToConstant: 20),
             
             // Forgot password button
             forgotPasswordButton.topAnchor.constraint(equalTo: passwordContainerView.bottomAnchor, constant: 10),
@@ -310,12 +298,12 @@ class LoginViewController: UIViewController {
             forgotPasswordButton.heightAnchor.constraint(equalToConstant: 20),
             
             // Login button
-            loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 20),
+            loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 30),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             loginButton.heightAnchor.constraint(equalToConstant: 55),
             
-            // Divider
+            // Divider stack view
             dividerStackView.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 30),
             dividerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dividerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -323,8 +311,10 @@ class LoginViewController: UIViewController {
             leftDivider.heightAnchor.constraint(equalToConstant: 1),
             rightDivider.heightAnchor.constraint(equalToConstant: 1),
             
+            orLabel.widthAnchor.constraint(equalToConstant: 30),
+            
             // Google button
-            googleButton.topAnchor.constraint(equalTo: dividerStackView.bottomAnchor, constant: 30),
+            googleButton.bottomAnchor.constraint(equalTo: appleButton.topAnchor, constant: -20),
             googleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             googleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             googleButton.heightAnchor.constraint(equalToConstant: 55),
@@ -334,11 +324,11 @@ class LoginViewController: UIViewController {
             googleIconView.widthAnchor.constraint(equalToConstant: 25),
             googleIconView.heightAnchor.constraint(equalToConstant: 25),
             
-            googleLabel.leadingAnchor.constraint(equalTo: googleIconView.trailingAnchor, constant: 10),
+            googleLabel.centerXAnchor.constraint(equalTo: googleButton.centerXAnchor),
             googleLabel.centerYAnchor.constraint(equalTo: googleButton.centerYAnchor),
             
             // Apple button
-            appleButton.topAnchor.constraint(equalTo: googleButton.bottomAnchor, constant: 15),
+            appleButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
             appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             appleButton.heightAnchor.constraint(equalToConstant: 55),
@@ -348,14 +338,8 @@ class LoginViewController: UIViewController {
             appleIconView.widthAnchor.constraint(equalToConstant: 25),
             appleIconView.heightAnchor.constraint(equalToConstant: 25),
             
-            appleLabel.leadingAnchor.constraint(equalTo: appleIconView.trailingAnchor, constant: 10),
-            appleLabel.centerYAnchor.constraint(equalTo: appleButton.centerYAnchor),
-            
-            // Home indicator
-            homeIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            homeIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-            homeIndicator.widthAnchor.constraint(equalToConstant: 130),
-            homeIndicator.heightAnchor.constraint(equalToConstant: 5)
+            appleLabel.centerXAnchor.constraint(equalTo: appleButton.centerXAnchor),
+            appleLabel.centerYAnchor.constraint(equalTo: appleButton.centerYAnchor)
         ])
     }
     
